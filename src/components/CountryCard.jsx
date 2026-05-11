@@ -2,14 +2,14 @@
 // Displays ONE CTRY INFO per INSTANCE
 
 function CountryCard({ country }) {
-  // Destructure country object for cleaner access
+  // Destructure country OBJECT for cleaner access
   const { name, population, region, capital, flags } = country;
 
   return (
     <div className="card">
       {/* Ctry FLAG IMG outside of CARD's inner DIV - CSS styling reasons */}
       <img src={flags.svg || flags.png} alt={name.common} />
-      
+
       <div className="card-body">
         {/* COMMON Country name (per instructions) */}
         <h3>{name.common}</h3>
@@ -21,7 +21,7 @@ function CountryCard({ country }) {
         <p>
           <strong>Region:</strong> {region}
         </p>
-        {/* Capital city (some countries may not have one?) */}
+        {/* Capital city WITH TERNARY JIC...(some countries may not have one?) */}
         <p>
           <strong>Capital:</strong> {capital ? capital[0] : "N/A"}
         </p>

@@ -14,7 +14,7 @@ function App() {
   return (
     <div>
       {/* <h1>Countries App</h1> */}
-      {/* Navigation links for page routing */}
+      {/* NAV LINKS for page routing */}
       <header className="header">
         <nav className="nav">
           <Link to="/" className="logo">
@@ -28,9 +28,10 @@ function App() {
       </header>
       <Routes>
         {/* Home page receives full countries dataset */}
+        {/* URL PATH & what element to render */}
         <Route path="/" element={<Home countriesData={data} />} />
 
-        {/* Placeholder pages for future features */}
+        {/* Placeholder PAGES for future features */}
         <Route path="/SavedCountries" element={<SavedCountries />} />
         <Route path="/CountryDetail" element={<CountryDetail />} />
       </Routes>
