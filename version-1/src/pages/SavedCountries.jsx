@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 function SavedCountries() {
-  // Form state
+  // Create the FORM via Form state.
+  // Starts as an OBJECT with EMPTY STRINGS for each form field, but will be FILLED with USER INPUT
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,6 +13,7 @@ function SavedCountries() {
   // Updates state when user types
   function handleChange(event) {
     setFormData({
+      // Spread operator to keep existing form data. UPDATES specific field that changes each time FROM USER INPUT (using event.target.name (key) & event.target.value (new value))
       ...formData,
       [event.target.name]: event.target.value,
     });
@@ -27,6 +29,7 @@ function SavedCountries() {
   return (
     <div className="form-page">
       <h2>Saved Countries</h2>
+      {/* CALLS handleSubmit when form is submitted */}
       <form className="my-profile-form" onSubmit={handleSubmit}>
         <h2>My Profile</h2>
 
@@ -35,7 +38,7 @@ function SavedCountries() {
           name="name"
           placeholder="Name"
           value={formData.name}
-          onChange={handleChange}
+          onChange={handleChange} //UPDATES formData STATE with USER INPUT as THEY TYPE
         />
 
         <input

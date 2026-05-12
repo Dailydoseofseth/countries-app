@@ -1,7 +1,7 @@
 import CountryCard from "../components/CountryCard";
 
 function Home({ countries }) {
-  // Receive full countries dataset as prop from App.jsx for easier READING COUNTRIES>COUNTRY (per card)
+  // Receive full countries dataset as prop PASSED DOWN from App.jsx for easier READING COUNTRIES>COUNTRY (per card)
   return (
     <div className="grid">
       {/* map through entire dataset ARRAY & render ONE CARD instance PER CTRY */}
