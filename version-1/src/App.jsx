@@ -1,19 +1,47 @@
 import "./App.css";
-import data from "../localData";
+
+import { useEffect, useState } from "react";
+
+// BACKUP local data IF API FAILS
+import localData from "../localData";
 
 import CountryDetail from "./pages/CountryDetail";
 import Home from "./pages/Home";
 import SavedCountries from "./pages/SavedCountries";
 
 import { Routes, Route, Link } from "react-router-dom";
-// import { useState } from "react";
 
 function App() {
-  // const [savedCountries, setSavedCountries] = useState([]);
+  // STATE VAR to store all countries data
+  const [countries, setCountries] = useState([]);
+
+  // FETCH countries data from REST Countries API using ASYNC/AWAIT
+  const getCountries = async () => {
+    try {
+      // API request
+      const response = await fetch(
+        "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region,cca3,borders",
+      );
+      // Convert API response into usable JS data
+      const data = await response.json();
+      console.log(data);
+      // Save API countries into state
+      setCountries(data);
+    } catch (error) {
+      console.log("ERROR:", error.message);
+
+      // FALLBACK TO localData.js >>>IF<<< API fails
+      setCountries(localData);
+    }
+  };
+
+  // useEffect runs ONCE when page first loads
+  useEffect(() => {
+    getCountries();
+  }, []);
 
   return (
     <div>
-      {/* <h1>Countries App</h1> */}
       {/* NAV LINKS for page routing */}
       <header className="header">
         <nav className="nav">
@@ -26,14 +54,21 @@ function App() {
           </Link>
         </nav>
       </header>
-      <Routes>
-        {/* Home page receives full countries dataset */}
-        {/* URL PATH & what element to render */}
-        <Route path="/" element={<Home countriesData={data} />} />
 
-        {/* Placeholder PAGES for future features */}
-        <Route path="/SavedCountries" element={<SavedCountries />} />
-        <Route path="/CountryDetail" element={<CountryDetail />} />
+      <Routes>
+        {/* Home page NOW receives API countries data */}
+        <Route path="/" element={<Home countries={countries} />} />
+
+        {/* Future pages NOW also receive countries data */}
+        <Route
+          path="/SavedCountries"
+          element={<SavedCountries countries={countries} />}
+        />
+
+        <Route
+          path="/CountryDetail"
+          element={<CountryDetail countries={countries} />}
+        />
       </Routes>
     </div>
   );
