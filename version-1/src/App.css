@@ -21,6 +21,8 @@ body {
   --dark-grey: hsl(0, 0%, 52%);
   --light-grey: hsl(0, 0%, 98%);
   --white: hsl(0, 0%, 100%);
+  --purple-1: hsl(243, 37%, 57%);
+  --purple-2: hsl(243, 37%, 47%);
 }
 
 /* =========================
@@ -98,6 +100,7 @@ a {
     0 -1px 4px 2px rgba(0, 0, 0, 0.17),
     0 0 4px 4px rgba(0, 0, 0, 0.12);
   /* x  y  blur spread   color */
+
   transition: box-shadow 0.2s ease;
 }
 .card:hover {
@@ -143,44 +146,40 @@ a {
   padding: 4rem 3rem;
 }
 
-.profile-form {
+.my-profile-form {
   background: var(--white);
-
   max-width: 600px;
-
   padding: 2rem;
-
   border-radius: 9px;
-
   box-shadow:
     0 -1px 4px 2px rgba(0, 0, 0, 0.17),
     0 0 4px 4px rgba(0, 0, 0, 0.12);
 }
 
-.profile-form input,
-.profile-form textarea,
-.profile-form button {
+.my-profile-form input,
+.my-profile-form textarea,
+.my-profile-form button {
   width: 100%;
-
   margin-bottom: 1rem;
-
   padding: 1rem;
-
   border: none;
-
-  border-radius: 5px;
-
+  border-radius: 11px;
   font-family: inherit;
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 3px rgba(0, 0, 0, 0.12);
 }
 
-.profile-form textarea {
+.my-profile-form textarea {
   height: 120px;
 }
 
-.profile-form button {
-  background: var(--dark-blue-1);
-
+.my-profile-form button {
+  background: var(--purple-1);
   color: var(--white);
-
+  width: 8rem;
   cursor: pointer;
+}
+.my-profile-form button:hover {
+  background: var(--purple-2);
 }

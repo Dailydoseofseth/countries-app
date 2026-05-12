@@ -26,8 +26,9 @@ function SavedCountries() {
 
   return (
     <div className="form-page">
-      <form className="profile-form" onSubmit={handleSubmit}>
-        <h2>Save Your Profile</h2>
+      <h2>Saved Countries</h2>
+      <form className="my-profile-form" onSubmit={handleSubmit}>
+        <h2>My Profile</h2>
 
         <input
           type="text"
