@@ -1,0 +1,30 @@
+FOR PRACTICE & STUDY ONLY:
+
+
+==================================== VERSION - 1 ============================================
+SavedCountries.jsx
+------------------------------------------------
+import { useState } from "react";
+
+function SavedCountries() {
+  // form state
+
+  // handleChange
+
+  // handleSubmit
+
+  return (
+    <>
+      {/* page layout */}
+
+      {/* form */}
+    </>
+  );
+}
+
+export default SavedCountries;
+
+--------------------------------------------------
+--------------------------------------------------
+
+next rough draft...
