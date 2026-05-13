@@ -24,9 +24,12 @@ function App() {
       const response = await fetch(
         "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region,cca3,borders",
       );
+
       // Convert API response into JSON object
       const data = await response.json();
+
       console.log(data);
+
       // Save API countries into state-VAR via SETTER FUNC
       setCountries(data);
     } catch (error) {
@@ -67,8 +70,9 @@ function App() {
           element={<SavedCountries countries={countries} />}
         />
 
+        {/* Country Detail page uses COUNTRY NAME from URL (dynamic routing) */}
         <Route
-          path="/CountryDetail"
+          path="/CountryDetail/:countryName"
           element={<CountryDetail countries={countries} />}
         />
       </Routes>
