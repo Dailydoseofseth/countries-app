@@ -1,7 +1,7 @@
 import "./App.css";
 
 //ADD useState & useEffect FETCHing API DATA
-//USEEFFECT HOOK used BECAUSE ---Fetch data AFTER component loads: NOT during every render. runs 1 time. 
+//USEEFFECT HOOK used BECAUSE ---Fetch data AFTER component loads: NOT during every render. runs 1 time.
 import { useEffect, useState } from "react";
 
 // BACKUP local data IF API FAILS (imported/Kept on purppose)
