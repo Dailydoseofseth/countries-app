@@ -1,22 +1,57 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function CountryDetail({ countries }) {
   // get country name from URL parameter
   const countryName = useParams().countryName;
 
-  console.log("CountryDetail countryName:", countryName);
-
   // find MATCHING CTRY OBJ from countries ARRAY
-  const selectedCountry = countries.find((country) => {
+  const country = countries.find((country) => {
     return country.name.common === countryName;
   });
 
+  // Prevents crash while API data is still loading
+  if (!country) {
+    return <h2>Loading...</h2>;
+  }
+
   return (
-    <>
-      <h2>
-        {selectedCountry ? selectedCountry.name.common : "Loading Loading..."}
-      </h2>
-    </>
+    <div className="detail-page">
+      {/* Back button */}
+      <Link to="/" className="back-btn">
+        ← Back
+      </Link>
+
+      <div className="detail-container">
+        {/* LEFT SIDE: FLAG */}
+        <img
+          className="detail-flag"
+          src={country.flags.svg || country.flags.png}
+          alt={country.name.common}
+        />
+
+        {/* RIGHT SIDE: INFO */}
+        <div className="detail-content">
+          {/* COMMON Country name */}
+          <h1>{country.name.common}</h1>
+
+          {/* Population */}
+          <p>
+            <strong>Population:</strong> {country.population}
+          </p>
+
+          {/* Region */}
+          <p>
+            <strong>Region:</strong> {country.region}
+          </p>
+
+          {/* Capital */}
+          <p>
+            <strong>Capital:</strong>{" "}
+            {country.capital ? country.capital[0] : "N/A"}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 

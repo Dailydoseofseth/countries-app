@@ -183,3 +183,84 @@ a {
 .my-profile-form button:hover {
   background: var(--purple-2);
 }
+
+/* =========================
+    COUNTRY DETAILS PAGE
+========================= */
+/* =========================
+   COUNTRY DETAIL PAGE
+========================= */
+
+.detail-page {
+  padding: 3rem;
+}
+
+/* back button */
+.back-btn {
+  display: inline-block;
+  margin-bottom: 3rem;
+
+  background: var(--white);
+  padding: 0.8rem 2rem;
+
+  border-radius: 9px;
+
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+
+  font-weight: 600;
+}
+.back-btn:hover {
+  background: var(--dark-grey);
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.25),
+    0 2px 12px rgba(0, 0, 0, 0.17);
+}
+
+/* layout container (flag + info side by side) */
+.detail-container {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+/* flag image */
+.detail-flag {
+  width: 45%;
+  max-width: 500px;
+
+  border-radius: 9px;
+
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+
+/* right side content */
+.detail-content {
+  flex: 1;
+}
+
+/* country title */
+.detail-content h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* info text blocks */
+.detail-content p {
+  margin: 0 0 0.6rem 0;
+  font-size: 1rem;
+}
+
+/* responsive layout */
+@media (max-width: 900px) {
+  .detail-container {
+    flex-direction: column;
+  }
+
+  .detail-flag {
+    width: 100%;
+  }
+}

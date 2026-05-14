@@ -1,9 +1,10 @@
 import "./App.css";
 
 //ADD useState & useEffect FETCHing API DATA
+//USEEFFECT HOOK used BECAUSE ---Fetch data AFTER component loads: NOT during every render. runs 1 time. 
 import { useEffect, useState } from "react";
 
-// BACKUP local data IF API FAILS (Kept on purppose)
+// BACKUP local data IF API FAILS (imported/Kept on purppose)
 import localData from "../localData";
 
 import CountryDetail from "./pages/CountryDetail";
@@ -18,6 +19,7 @@ function App() {
   const [countries, setCountries] = useState([]);
 
   // FETCH countries data from RESTCountries API using ASYNC/AWAIT
+  //give me API data ASYNCHRONOUSLY
   const getCountries = async () => {
     try {
       // API request
@@ -30,7 +32,8 @@ function App() {
 
       console.log(data);
 
-      // Save API countries into state-VAR via SETTER FUNC
+      // Save API countries OBJ into state-VAR via SETTER FUNC
+      //THIS is where empty ARRAY becomes all OBBJECTS of API data
       setCountries(data);
     } catch (error) {
       console.log("ERROR:", error.message);
@@ -41,6 +44,7 @@ function App() {
   };
 
   // useEffect runs ONCE when page first loads
+  // When Countries App first appears/renders, go fetch all countries one time.
   useEffect(() => {
     getCountries();
   }, []);
