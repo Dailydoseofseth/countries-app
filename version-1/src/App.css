@@ -185,30 +185,21 @@ a {
 }
 
 /* =========================
-    COUNTRY DETAILS PAGE
-========================= */
-/* =========================
    COUNTRY DETAIL PAGE
 ========================= */
-
 .detail-page {
   padding: 3rem;
 }
-
 /* back button */
 .back-btn {
   display: inline-block;
   margin-bottom: 3rem;
-
   background: var(--white);
   padding: 0.8rem 2rem;
-
   border-radius: 9px;
-
   box-shadow:
     0 -1px 4px 2px rgba(0, 0, 0, 0.17),
     0 0 4px 4px rgba(0, 0, 0, 0.12);
-
   font-weight: 600;
 }
 .back-btn:hover {
@@ -224,43 +215,89 @@ a {
   gap: 4rem;
   align-items: flex-start;
 }
-
 /* flag image */
 .detail-flag {
   width: 45%;
   max-width: 500px;
-
   border-radius: 9px;
-
   box-shadow:
     0 -1px 4px 2px rgba(0, 0, 0, 0.17),
     0 0 4px 4px rgba(0, 0, 0, 0.12);
 }
-
 /* right side content */
 .detail-content {
   flex: 1;
 }
-
 /* country title */
 .detail-content h1 {
   font-size: 2rem;
   margin-bottom: 2rem;
 }
-
 /* info text blocks */
 .detail-content p {
   margin: 0 0 0.6rem 0;
   font-size: 1rem;
 }
-
 /* responsive layout */
 @media (max-width: 900px) {
   .detail-container {
     flex-direction: column;
   }
-
   .detail-flag {
     width: 100%;
+  }
+}
+
+/* =========================
+   SEARCH + REGION FILTER CONTROLS
+========================= */
+.search-bar-container {
+  padding: 3rem 3rem 0 3rem;
+}
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  border: none;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--white);
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 3rem 0 3rem;
+}
+/* removes duplicate padding from old search wrapper */
+.search-bar-container {
+  padding: 0;
+}
+/* region dropdown */
+.region-select {
+  padding: 1rem;
+  border: none;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--white);
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+/* mobile design */
+@media (max-width: 700px) {
+  .controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .search-input {
+    max-width: 100%;
   }
 }
