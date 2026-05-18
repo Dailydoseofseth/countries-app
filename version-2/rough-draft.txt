@@ -1,0 +1,57 @@
+FOR PRACTICE & STUDY ONLY:
+
+
+==================================== VERSION - 1 ============================================
+SavedCountries.jsx
+------------------------------------------------
+import { useState } from "react";
+
+function SavedCountries() {
+  // form state
+
+  // handleChange
+
+  // handleSubmit
+
+  return (
+    <>
+      {/* page layout */}
+
+      {/* form */}
+    </>
+  );
+}
+
+export default SavedCountries;
+
+--------------------------------------------------
+--------------------------------------------------
+
+next rough draft...
+
+CountryDetail.jsx V-1 (before FIGMA DESIGN) :
+
+
+import { useParams } from "react-router-dom";
+
+function CountryDetail({ countries }) {
+  // get country name from URL parameter
+  const countryName = useParams().countryName;
+
+  console.log("CountryDetail countryName:", countryName);
+
+  // find MATCHING CTRY OBJ from countries ARRAY
+  const selectedCountry = countries.find((country) => {
+    return country.name.common === countryName;
+  });
+
+  return (
+    <>
+      <h2>
+        {selectedCountry ? selectedCountry.name.common : "Loading Loading..."}
+      </h2>
+    </>
+  );
+}
+
+export default CountryDetail;

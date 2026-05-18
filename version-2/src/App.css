@@ -1,0 +1,303 @@
+/* =========================
+   GLOBAL RESET - boiler CSS -
+========================= */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Nunito Sans", Arial, sans-serif;
+  background-color: var(--light-grey);
+  color: var(--dark-blue-3);
+}
+
+/* =========================
+   COLOR VARIABLES 
+========================= */
+:root {
+  --dark-blue-1: hsl(209, 23%, 22%);
+  --dark-blue-2: hsl(207, 26%, 17%);
+  --dark-blue-3: hsl(200, 15%, 8%);
+  --dark-grey: hsl(0, 0%, 52%);
+  --light-grey: hsl(0, 0%, 98%);
+  --white: hsl(0, 0%, 100%);
+  --purple-1: hsl(243, 37%, 57%);
+  --purple-2: hsl(243, 37%, 47%);
+}
+
+/* =========================
+   HEADER (FLOATING / 3D FEEL)
+========================= */
+header {
+  background: var(--white);
+  padding: 1rem 3rem;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* links */
+a {
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem;
+}
+/* "Where in the world?" */
+.logo {
+  font-size: 2rem;
+  font-weight: bolder;
+  text-decoration: none;
+  color: var(--dark-blue-3);
+}
+
+/* =========================
+   GRID (MAX 4 PER ROW)
+========================= */
+.grid {
+  display: grid;
+  /* desktop: 4 cards/row */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  padding: 3rem;
+  padding-top: 5rem;
+}
+
+/* responsive design */
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   COUNTRY CARD
+========================= */
+.card {
+  background: var(--white);
+  border-radius: 9px;
+  /* ensures clean, rounded edges */
+  overflow: hidden;
+  /* heavier base shadow */
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+  /* x  y  blur spread   color */
+
+  transition: box-shadow 0.2s ease;
+}
+.card:hover {
+  /* darker + more defined "FRAME-LIKE" shadow */
+  box-shadow:
+    0 0 7px 7px rgba(0, 0, 0, 0.25),
+    0 2px 12px rgba(0, 0, 0, 0.17);
+}
+
+/* flag image/s */
+.card img {
+  /* remove shodow 'gap' from FLAG IMG bottoms */
+  display: block;
+  width: 100%;
+  /* flags to ALL STAY SAME SIZE */
+  height: 160px;
+  object-fit: cover;
+}
+/* SEPARATE CHILD DIV/wrapper TO ALIGN ALL CHILD ITEMS of CARD, except flag IMG/s */
+/* KEEPS FLAGS from being affected by NOT BEING INSIDE 'content/body' of CARD */
+.card-body {
+  padding: 0 1.5rem 3rem 1.5rem;
+  /* REMINDER TO SELF: */
+  /*      top right bottom left */
+}
+.card-body h3 {
+  margin: 1rem 0 1rem 0; /* space BELOW country name ONLY */
+  font-size: 1.1rem;
+}
+.card-body p {
+  margin: 0 0 0.4rem 0; /* tight spacing between the detail lines */
+  font-size: 0.875rem;
+}
+/* .card-body p:last-child {
+  margin-bottom: 0;
+} */
+
+/* =========================
+   SAVED COUNTRIES FORM
+========================= */
+
+.form-page {
+  padding: 4rem 3rem;
+}
+
+.my-profile-form {
+  background: var(--white);
+  max-width: 600px;
+  padding: 2rem;
+  border-radius: 9px;
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+
+.my-profile-form input,
+.my-profile-form textarea,
+.my-profile-form button {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 11px;
+  font-family: inherit;
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 3px rgba(0, 0, 0, 0.12);
+}
+
+.my-profile-form textarea {
+  height: 120px;
+}
+
+.my-profile-form button {
+  background: var(--purple-1);
+  color: var(--white);
+  width: 8rem;
+  cursor: pointer;
+}
+.my-profile-form button:hover {
+  background: var(--purple-2);
+}
+
+/* =========================
+   COUNTRY DETAIL PAGE
+========================= */
+.detail-page {
+  padding: 3rem;
+}
+/* back button */
+.back-btn {
+  display: inline-block;
+  margin-bottom: 3rem;
+  background: var(--white);
+  padding: 0.8rem 2rem;
+  border-radius: 9px;
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+}
+.back-btn:hover {
+  background: var(--dark-grey);
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.25),
+    0 2px 12px rgba(0, 0, 0, 0.17);
+}
+
+/* layout container (flag + info side by side) */
+.detail-container {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+}
+/* flag image */
+.detail-flag {
+  width: 45%;
+  max-width: 500px;
+  border-radius: 9px;
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+/* right side content */
+.detail-content {
+  flex: 1;
+}
+/* country title */
+.detail-content h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+/* info text blocks */
+.detail-content p {
+  margin: 0 0 0.6rem 0;
+  font-size: 1rem;
+}
+/* responsive layout */
+@media (max-width: 900px) {
+  .detail-container {
+    flex-direction: column;
+  }
+  .detail-flag {
+    width: 100%;
+  }
+}
+
+/* =========================
+   SEARCH + REGION FILTER CONTROLS
+========================= */
+.search-bar-container {
+  padding: 3rem 3rem 0 3rem;
+}
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  border: none;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--white);
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 3rem 0 3rem;
+}
+/* removes duplicate padding from old search wrapper */
+.search-bar-container {
+  padding: 0;
+}
+/* region dropdown */
+.region-select {
+  padding: 1rem;
+  border: none;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--white);
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+/* mobile design */
+@media (max-width: 700px) {
+  .controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .search-input {
+    max-width: 100%;
+  }
+}
