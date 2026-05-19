@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function SavedCountries() {
   // Create the FORM via Form state.
@@ -9,6 +9,32 @@ function SavedCountries() {
     country: "",
     bio: "",
   });
+
+  // Stores newest USER NAME from backend
+  const [newUserName, setNewUserName] = useState(null);
+
+  // GET newest USER data from backend API
+  const getNewestUser = async () => {
+    try {
+      // FETCH request to backend API
+      const response = await fetch("/api/get-newest-user");
+
+      // Convert JSON response into JavaScript data
+      const data = await response.json();
+
+      console.log("NEWEST user:", data);
+
+      // Save newest USER NAME into state
+      setNewUserName(data[0].name);
+    } catch (error) {
+      console.log("ERROR loading user:", error);
+    }
+  };
+
+  // Runs ONCE when component first loads
+  useEffect(() => {
+    getNewestUser();
+  }, []);
 
   // Updates state when user types
   function handleChange(event) {
@@ -29,6 +55,10 @@ function SavedCountries() {
   return (
     <div className="form-page">
       <h2>Saved Countries</h2>
+
+      {/* ONLY renders welcome message IF newest USER exists */}
+      {newUserName && <h3>Welcome, {newUserName}!</h3>}
+
       {/* CALLS handleSubmit when form is submitted */}
       <form className="my-profile-form" onSubmit={handleSubmit}>
         <h2>My Profile</h2>
