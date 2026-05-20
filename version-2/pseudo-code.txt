@@ -35,23 +35,32 @@ This is our WHAT, WHEN, WHERE, HOW framework for working with data:
 ========================
 
 ❓ WHAT...
-TYPE OF HTTP REQUEST (GET OR POST): ------
-API ENDPOINT: ------
+TYPE OF HTTP REQUEST (GET OR POST): ------   POST
+API ENDPOINT: ------   /add-one-user
 
-REQUEST BODY DATA TYPE (if applicable): ------
-REQUEST BODY (if applicable): ------
+REQUEST BODY DATA TYPE (if applicable): ------   OBJECT
+REQUEST BODY (if applicable): ------   (JSON OBJECT) (all in quotes)
+{
+  "name": "Alice",
+  "country_name": "Germany",
+  "email": "alice@example.com",
+  "bio": "A little about Alice"
+}
 
-RESPONSE DATA TYPE: ------
-RESPONSE: ------
+RESPONSE DATA TYPE: ------    STRING
+RESPONSE: ------    "SUCCESS! User has been added."
 
-❓ WHEN: ------
+❓ WHEN: ------   onSubmit (when user submits the FORM)
 
-❓ WHERE: ------
+❓ WHERE: ------   SavedCountries.jsx - inside the handleSubmit FUNC
 
 ❓ HOW:
-Step 1: ------
-Step 2: ------
-Step 3: ------
+Step 1: ------   user FILLS OUT FORM. Clicks SUBMIT.
+Step 2: ------   handleSubmit RUNS FUNC. Call ANOTHER FUNC to do API CALL / Post Req
+Step 3: ------   Async - Await.......    Try & Catch
+Step 3: ------   Send POST REQUEST
+
+
 Add more steps as needed!
 
 ========================

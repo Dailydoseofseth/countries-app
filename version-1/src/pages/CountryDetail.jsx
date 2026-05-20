@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 
 function CountryDetail({ countries }) {
-  // get country name from URL parameter
+  // get country name from API URL parameter
   const countryName = useParams().countryName;
 
   // find MATCHING CTRY OBJ from countries ARRAY
@@ -29,7 +29,7 @@ function CountryDetail({ countries }) {
           alt={country.name.common}
         />
 
-        {/* RIGHT SIDE: INFO */}
+        {/* RIGHT SIDE: DETAIL */}
         <div className="detail-content">
           {/* COMMON Country name */}
           <h1>{country.name.common}</h1>

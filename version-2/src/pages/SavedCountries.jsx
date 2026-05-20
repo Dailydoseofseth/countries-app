@@ -4,7 +4,7 @@ function SavedCountries() {
   // Create the FORM via Form state.
   // Starts as an OBJECT with EMPTY STRINGS for each form field, but will be FILLED with USER INPUT
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
     country: "",
     bio: "",
@@ -12,6 +12,9 @@ function SavedCountries() {
 
   // Stores newest USER NAME from backend
   const [newUserName, setNewUserName] = useState(null);
+
+  // Stores all USER INFO from form submit
+  // const [userInfo, setUserInfo] = useState(null);
 
   // GET newest USER data from backend API
   const getNewestUser = async () => {
@@ -45,12 +48,34 @@ function SavedCountries() {
     });
   }
 
-  // Handles form submit
-  function handleSubmit(event) {
+  // ("/api/add-one-user") is the endpoint for POST request to store USER data from form submit
+  // ("https://backend-answer-keys.onrender.com/api/add-one-user")
+  const storeUserData = async (data) => {
+    await fetch("/api/add-one-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.fullName,
+        country_name: data.country,
+        email: data.email,
+        bio: data.bio,
+      }),
+    });
+  };
+
+  // Submit Handler
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(formData);
-  }
+    console.log("Submitted", formData);
+
+    await storeUserData(formData);
+
+    // instantly update UI (no waiting for GET)
+    setNewUserName(formData.fullName);
+  };
 
   return (
     <div className="form-page">
@@ -65,9 +90,9 @@ function SavedCountries() {
 
         <input
           type="text"
-          name="name"
+          name="fullName"
           placeholder="Name"
-          value={formData.name}
+          value={formData.fullName}
           onChange={handleChange} //UPDATES formData STATE with USER INPUT as THEY TYPE
         />
 
