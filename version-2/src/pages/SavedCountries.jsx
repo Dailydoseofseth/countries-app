@@ -16,10 +16,10 @@ function SavedCountries() {
   // Stores all USER INFO from form submit
   // const [userInfo, setUserInfo] = useState(null);
 
-  // GET newest USER data from backend API
+  // GET newest USER data from backend API using ASYNC/AWAIT & a Try/Catch ERROR HANDLER
   const getNewestUser = async () => {
     try {
-      // FETCH request to backend API
+      // FETCH request to backend API using the PROXY endpoint
       const response = await fetch("/api/get-newest-user");
 
       // Convert JSON response into JavaScript data
@@ -27,14 +27,17 @@ function SavedCountries() {
 
       console.log("NEWEST user:", data);
 
-      // Save newest USER NAME into state
+      // Save newest USER NAME into state using Dot/Bracket Notation
       setNewUserName(data[0].name);
+      //runs IF FETCH FAILS
     } catch (error) {
       console.log("ERROR loading user:", error);
     }
   };
 
-  // Runs ONCE when component first loads
+  // Runs ONLY ONCE (bc dependency array) when component first loads
+  // Used here to automatically send GET REQ newest user immediately
+  // React THNE updates state & automatically re-renders UI with that user info
   useEffect(() => {
     getNewestUser();
   }, []);
@@ -50,13 +53,20 @@ function SavedCountries() {
 
   // ("/api/add-one-user") is the endpoint for POST request to store USER data from form submit
   // ("https://backend-answer-keys.onrender.com/api/add-one-user")
+  //   // Async function to SEND form data to backend/database
+
   const storeUserData = async (data) => {
     await fetch("/api/add-one-user", {
+      //SENDS new data TO backend
       method: "POST",
+      // Tells backend the incoming data is JSON
       headers: {
         "Content-Type": "application/json",
       },
+      // Converts JS OBJ into JSON STRING before sending to backend
       body: JSON.stringify({
+        // LEFT side = backend/database field names (KEY)
+        // RIGHT side = React form data values (VALUE)
         name: data.fullName,
         country_name: data.country,
         email: data.email,
@@ -71,6 +81,7 @@ function SavedCountries() {
 
     console.log("Submitted", formData);
 
+    // WAIT for POST request to finish storing data in backend
     await storeUserData(formData);
 
     // instantly update UI (no waiting for GET)
