@@ -55,3 +55,23 @@ function CountryDetail({ countries }) {
 }
 
 export default CountryDetail;
+
+
+
+
+==================================== VERSION - 2 ============================================
+SavedCountries.jsx 
+
+
+          >>>>> THE FLOW <<<<<        
+User clicks Save Country
+↓
+POST request sent to backend
+↓
+country_name stored in database
+↓
+GET request refreshes saved countries
+↓
+SavedCountries page renders them
+----------------------------------------
+

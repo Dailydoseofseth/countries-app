@@ -44,6 +44,18 @@ function Home({ countries }) {
     setRegion(event.target.value);
   }
 
+
+  // _____________________________________________________
+  // 🔥 DEBUG: .map INSIDE cosnsole.log! (always logs visible countries + their CCA3 codes 🔥)
+  console.log(
+    regionFilteredCountries.map((country) => {
+      return {
+        name: country.name.common,
+        cca3: country.cca3,
+      };
+    }),
+  );
+
   return (
     <>
       {/* SEARCH + FILTER controls */}

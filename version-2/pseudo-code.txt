@@ -101,6 +101,46 @@ Add more steps as needed!
 📊 SAVED COUNTRIES DATA
 ===================================
 
+❓ WHAT...
+TYPE OF HTTP REQUEST (GET OR POST): ------ POST
+
+API ENDPOINT: ------ /api/save-one-country
+
+REQUEST BODY DATA TYPE (if applicable): ------ OBJECT
+
+REQUEST BODY (if applicable): ------
+(JSON OBJECT) (all in quotes)
+
+{
+"country_name": "Germany"
+}
+
+RESPONSE DATA TYPE: ------ STRING
+
+RESPONSE: ------
+"SUCCESS! Country has been saved."
+
+❓ WHEN: ------
+When USER clicks the "Save Country" BUTTON on CountryDetail page
+
+❓ WHERE: ------
+CountryDetail.jsx - inside saveCountry FUNC
+
+❓ HOW:
+Step 1: ------ USER clicks "Save Country" BUTTON
+
+Step 2: ------ onClick EVENT triggers saveCountry FUNC
+
+Step 3: ------ saveCountry FUNC sends POST REQUEST to backend API endpoint
+
+Step 4: ------ Convert JavaScript OBJECT into JSON STRING using JSON.stringify()
+
+Step 5: ------ Backend/database stores COUNTRY NAME into SAVED_COUNTRIES table
+
+Step 6: ------ AFTER POST request finishes, call getSavedCountries FUNC again to refresh frontend data/UI
+
+Step 7: ------ Updated SAVED COUNTRIES state RE-RENDERS on SavedCountries page
+
 ========================
 🔶 STORING SAVED COUNTRIES DATA
 ========================

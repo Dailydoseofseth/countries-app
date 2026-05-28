@@ -47,6 +47,7 @@ a {
   text-decoration: none;
   color: inherit;
   padding: 1rem;
+  font-weight: bolder;
 }
 /* "Where in the world?" */
 .logo {

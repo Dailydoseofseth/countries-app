@@ -1,6 +1,7 @@
+// "ACTION PAGE"
 import { Link, useParams } from "react-router-dom";
 
-function CountryDetail({ countries }) {
+function CountryDetail({ countries, getSavedCountries }) {
   // get country name from API URL parameter
   const countryName = useParams().countryName;
 
@@ -13,6 +14,31 @@ function CountryDetail({ countries }) {
   if (!country) {
     return <h2>Loading...</h2>;
   }
+
+  // SENDS selected country TO BE/database SAVED_COUNTRIES table
+  const saveCountry = async () => {
+    try {
+      await fetch("/api/save-one-country", {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        // Convert JS OBJECT into JSON STRING before sending to BE
+        body: JSON.stringify({
+          country_name: country.name.common,
+        }),
+      });
+
+      console.log("COUNTRY SAVED:", country.name.common);
+
+      // refresh SAVED countries after POST request finishes
+      getSavedCountries();
+    } catch (error) {
+      console.log("ERROR saving country:", error);
+    }
+  };
 
   return (
     <div className="detail-page">
@@ -49,6 +75,9 @@ function CountryDetail({ countries }) {
             <strong>Capital:</strong>{" "}
             {country.capital ? country.capital[0] : "N/A"}
           </p>
+
+          {/* SAVE button triggers POST */}
+          <button onClick={saveCountry}>Save Country</button>
         </div>
       </div>
     </div>

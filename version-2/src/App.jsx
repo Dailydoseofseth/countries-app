@@ -1,3 +1,6 @@
+// "THE DATA HUB" PAGE:
+// ---------------------that routes to other pages and fetches API data for the entire app.
+// Also contains NAV links for routing to other pages.
 import "./App.css";
 
 //ADD useState & useEffect FETCHing API DATA
@@ -17,6 +20,9 @@ function App() {
   // STATE VAR to store all countries data
   // Starts as an EMPTY ARRAY, but will be FILLED with API DATA
   const [countries, setCountries] = useState([]);
+
+  // STATE VAR to store saved countries from backend
+  const [savedCountries, setSavedCountries] = useState([]);
 
   // FETCH countries data from RESTCountries API using ASYNC/AWAIT
   //give me API data ASYNCHRONOUSLY
@@ -43,10 +49,27 @@ function App() {
     }
   };
 
+  // GET saved countries from backend API
+  const getSavedCountries = async () => {
+    try {
+      // FETCH request to backend API using proxy
+      const response = await fetch("/api/get-all-saved-countries");
+
+      const data = await response.json();
+
+      console.log("SAVED COUNTRIES:", data);
+
+      setSavedCountries(data);
+    } catch (error) {
+      console.log("ERROR loading saved countries:", error);
+    }
+  };
+
   // useEffect runs ONCE when page first loads
   // When Countries App first appears/renders, go fetch all countries one time.
   useEffect(() => {
     getCountries();
+    getSavedCountries();
   }, []);
 
   return (
@@ -68,16 +91,26 @@ function App() {
         {/* Home page NOW receives API countries data */}
         <Route path="/" element={<Home countries={countries} />} />
 
-        {/* Future pages NOW also receive countries data */}
+        {/* Saved Countries page receives backend data */}
         <Route
           path="/SavedCountries"
-          element={<SavedCountries countries={countries} />}
+          element={
+            <SavedCountries
+              savedCountries={savedCountries}
+              countries={countries}
+            />
+          }
         />
 
         {/* Country Detail page uses COUNTRY NAME from URL (dynamic routing) */}
         <Route
           path="/CountryDetail/:countryName"
-          element={<CountryDetail countries={countries} />}
+          element={
+            <CountryDetail
+              countries={countries}
+              getSavedCountries={getSavedCountries}
+            />
+          }
         />
       </Routes>
     </div>

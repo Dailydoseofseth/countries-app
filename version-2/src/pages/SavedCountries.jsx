@@ -1,6 +1,8 @@
+// "DISPLAY PAGE"
 import { useState, useEffect } from "react";
+import CountryCard from "../components/CountryCard";
 
-function SavedCountries() {
+function SavedCountries({ countries }) {
   // Create the FORM via Form state.
   // Starts as an OBJECT with EMPTY STRINGS for each form field, but will be FILLED with USER INPUT
   const [formData, setFormData] = useState({
@@ -15,6 +17,9 @@ function SavedCountries() {
 
   // Stores all USER INFO from form submit
   // const [userInfo, setUserInfo] = useState(null);
+
+  // Stores SAVED COUNTRIES from backend
+  const [savedCountries, setSavedCountries] = useState([]);
 
   // GET newest USER data from backend API using ASYNC/AWAIT & a Try/Catch ERROR HANDLER
   const getNewestUser = async () => {
@@ -35,11 +40,25 @@ function SavedCountries() {
     }
   };
 
+  // GET saved countries from backend database
+  const getSavedCountries = async () => {
+    try {
+      const response = await fetch("/api/get-all-saved-countries");
+
+      const data = await response.json();
+
+      console.log("SAVED COUNTRIES:", data);
+
+      setSavedCountries(data);
+    } catch (error) {
+      console.log("ERROR loading saved countries:", error);
+    }
+  };
+
   // Runs ONLY ONCE (bc dependency array) when component first loads
-  // Used here to automatically send GET REQ newest user immediately
-  // React THNE updates state & automatically re-renders UI with that user info
   useEffect(() => {
     getNewestUser();
+    getSavedCountries();
   }, []);
 
   // Updates state when user types
@@ -53,7 +72,7 @@ function SavedCountries() {
 
   // ("/api/add-one-user") is the endpoint for POST request to store USER data from form submit
   // ("https://backend-answer-keys.onrender.com/api/add-one-user")
-  //   // Async function to SEND form data to backend/database
+  // Async function to SEND form data to backend/database
 
   const storeUserData = async (data) => {
     await fetch("/api/add-one-user", {
@@ -87,6 +106,15 @@ function SavedCountries() {
     // instantly update UI (no waiting for GET)
     setNewUserName(formData.fullName);
   };
+
+  // Convert saved country names → full country objects for UI rendering
+  const matchedSavedCountries = savedCountries
+    .map((saved) => {
+      return countries.find((country) => {
+        return country.name.common === saved.country_name;
+      });
+    })
+    .filter(Boolean);
 
   return (
     <div className="form-page">
@@ -132,6 +160,13 @@ function SavedCountries() {
 
         <button type="submit">Save Profile</button>
       </form>
+
+      {/* SAVED COUNTRIES DISPLAY */}
+      <div className="grid">
+        {matchedSavedCountries.map((country) => {
+          return <CountryCard key={country.cca3} country={country} />;
+        })}
+      </div>
     </div>
   );
 }
