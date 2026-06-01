@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import CountryCard from "../components/CountryCard";
 
-function SavedCountries({ countries }) {
+function SavedCountries({ countries, savedCountries }) {
   // Create the FORM via Form state.
   // Starts as an OBJECT with EMPTY STRINGS for each form field, but will be FILLED with USER INPUT
   const [formData, setFormData] = useState({
@@ -15,11 +15,8 @@ function SavedCountries({ countries }) {
   // Stores newest USER NAME from backend
   const [newUserName, setNewUserName] = useState(null);
 
-  // Stores all USER INFO from form submit
-  // const [userInfo, setUserInfo] = useState(null);
-
-  // Stores SAVED COUNTRIES from backend
-  const [savedCountries, setSavedCountries] = useState([]);
+  // Stores ALL USERS from backend
+  const [allUsers, setAllUsers] = useState([]);
 
   // GET newest USER data from backend API using ASYNC/AWAIT & a Try/Catch ERROR HANDLER
   const getNewestUser = async () => {
@@ -40,25 +37,25 @@ function SavedCountries({ countries }) {
     }
   };
 
-  // GET saved countries from backend database
-  const getSavedCountries = async () => {
+  // GET all USERS from backend database
+  const getAllUsers = async () => {
     try {
-      const response = await fetch("/api/get-all-saved-countries");
+      const response = await fetch("/api/get-all-users");
 
       const data = await response.json();
 
-      console.log("SAVED COUNTRIES:", data);
+      console.log("ALL USERS:", data);
 
-      setSavedCountries(data);
+      setAllUsers(data);
     } catch (error) {
-      console.log("ERROR loading saved countries:", error);
+      console.log("ERROR loading users:", error);
     }
   };
 
   // Runs ONLY ONCE (bc dependency array) when component first loads
   useEffect(() => {
     getNewestUser();
-    getSavedCountries();
+    getAllUsers();
   }, []);
 
   // Updates state when user types
@@ -105,6 +102,17 @@ function SavedCountries({ countries }) {
 
     // instantly update UI (no waiting for GET)
     setNewUserName(formData.fullName);
+
+    // clears FORM after submit
+    setFormData({
+      fullName: "",
+      email: "",
+      country: "",
+      bio: "",
+    });
+
+    // refresh ALL USERS section
+    getAllUsers();
   };
 
   // Convert saved country names → full country objects for UI rendering
@@ -167,8 +175,32 @@ function SavedCountries({ countries }) {
           return <CountryCard key={country.cca3} country={country} />;
         })}
       </div>
+
+      {/* ALL USERS SECTION */}
+      <h2>All Users</h2>
+
+      <div className="users-grid">
+        {allUsers.map((user) => {
+          return (
+            <div className="user-card" key={user.user_id}>
+              <h3>{user.name}</h3>
+
+              <p>
+                <strong>Country:</strong> {user.country_name}
+              </p>
+
+              <p>
+                <strong>Email:</strong> {user.email}
+              </p>
+
+              <p>
+                <strong>Bio:</strong> {user.bio}
+              </p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
-
 export default SavedCountries;

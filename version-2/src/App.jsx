@@ -108,6 +108,7 @@ function App() {
           element={
             <CountryDetail
               countries={countries}
+              savedCountries={savedCountries}
               getSavedCountries={getSavedCountries}
             />
           }

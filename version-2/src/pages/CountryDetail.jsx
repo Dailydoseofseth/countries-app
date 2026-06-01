@@ -1,26 +1,26 @@
 // "ACTION PAGE"
-
-// ADD useEffect & useState HOOKS
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-// React Router tools
-import { Link, useParams } from "react-router-dom";
-
-function CountryDetail({ countries, getSavedCountries }) {
+function CountryDetail({ countries, savedCountries, getSavedCountries }) {
   // get country name from API URL parameter
   const countryName = useParams().countryName;
 
-  // STATE VAR to store COUNTRY VIEW COUNT from backend
-  const [countryCount, setCountryCount] = useState(null);
+  // STATE VAR for COUNTRY VIEW COUNT
+  const [countryCount, setCountryCount] = useState(0);
 
   // find MATCHING CTRY OBJ from countries ARRAY
   const country = countries.find((country) => {
     return country.name.common === countryName;
   });
 
-  // POST request:
-  // increases COUNTRY VIEW COUNT by +1
-  // backend RETURNS updated COUNT value
+  // checks IF current country already exists in SAVED countries ARRAY 
+  // which HEART shows
+  const isSaved = savedCountries.some((savedCountry) => {
+    return savedCountry.country_name === country?.name.common;
+  });
+
+  // Updates COUNTRY VIEW COUNT in backend database
   const updateCountryCount = async () => {
     try {
       const response = await fetch("/api/update-one-country-count", {
@@ -36,22 +36,21 @@ function CountryDetail({ countries, getSavedCountries }) {
         }),
       });
 
-      // Convert API response into JavaScript DATA
       const data = await response.json();
 
       console.log("UPDATED COUNTRY COUNT:", data);
 
-      // Save returned COUNT into STATE VAR
+      // Save returned COUNT into state
       setCountryCount(data.count);
     } catch (error) {
       console.log("ERROR updating country count:", error);
     }
   };
 
-  // useEffect MUST stay ABOVE conditional returns
-  // otherwise HOOK ORDER changes between renders
+  // useEffect runs AFTER component renders
+  // updates country count EACH TIME a country detail page loads
   useEffect(() => {
-    // ONLY run IF country exists
+    // prevents crash while country data still loading
     if (country) {
       updateCountryCount();
     }
@@ -87,6 +86,31 @@ function CountryDetail({ countries, getSavedCountries }) {
     }
   };
 
+  // REMOVES selected country FROM backend/database SAVED_COUNTRIES table
+  const unsaveCountry = async () => {
+    try {
+      await fetch("/api/unsave-one-country", {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        // Convert JS OBJECT into JSON STRING before sending to BE
+        body: JSON.stringify({
+          country_name: country.name.common,
+        }),
+      });
+
+      console.log("COUNTRY UNSAVED:", country.name.common);
+
+      // refresh SAVED countries after POST request finishes
+      getSavedCountries();
+    } catch (error) {
+      console.log("ERROR unsaving country:", error);
+    }
+  };
+
   return (
     <div className="detail-page">
       {/* Back button */}
@@ -107,11 +131,6 @@ function CountryDetail({ countries, getSavedCountries }) {
           {/* COMMON Country name */}
           <h1>{country.name.common}</h1>
 
-          {/* COUNTRY VIEW COUNT from backend */}
-          <p>
-            <strong>Views:</strong> {countryCount}
-          </p>
-
           {/* Population */}
           <p>
             <strong>Population:</strong> {country.population}
@@ -128,8 +147,17 @@ function CountryDetail({ countries, getSavedCountries }) {
             {country.capital ? country.capital[0] : "N/A"}
           </p>
 
-          {/* SAVE button triggers POST */}
-          <button onClick={saveCountry}>Save Country</button>
+          {/* COUNTRY VIEW COUNT */}
+          <p>
+            <strong>Views:</strong> {countryCount}
+          </p>
+
+          {/* CONDITIONAL heart button */}
+          {isSaved ? (
+            <button onClick={unsaveCountry}>❤️ Unsave</button>
+          ) : (
+            <button onClick={saveCountry}>🩶 Save</button>
+          )}
         </div>
       </div>
     </div>
