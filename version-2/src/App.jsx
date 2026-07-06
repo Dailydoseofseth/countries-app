@@ -30,11 +30,14 @@ function App() {
     try {
       // API request
       const response = await fetch(
-        "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region,cca3,borders",
+        "https://countries.dev/countries?fields=name,flags,population,capital,region,cca3,borders",
+        // "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region,cca3,borders",
       );
 
-      // Convert API response into JSON object
+      // Convert API response into JSON objectdded
       const data = await response.json();
+      console.log(response.status);
+      console.log(await response.text());
 
       console.log(data);
 
