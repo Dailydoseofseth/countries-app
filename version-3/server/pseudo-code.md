@@ -21,7 +21,7 @@ Your task: Match your SQL code to each API endpoint.
 Paste the link to your "Countries App SQL" DB Fiddle below.
 If you're having trouble finding it, try checking your submission to assignment titled "Countries App — Version 3 — Milestone: Create SQL Database Schema"
 
-🔗 My Countries App SQL DB Fiddle Link: \_**\_ https://www.db-fiddle.com/f/hnqejaf8wLzo5ASpFzB8YG/28 \_\_**
+🔗 My Countries App SQL DB Fiddle Link: \_**\_ https://www.db-fiddle.com/f/hnqejaf8wLzo5ASpFzB8YG/32 \_\_**
 
 ---
 
@@ -128,7 +128,7 @@ Here's an example of how you'd fill out this pseudo-coding template for an examp
 - Description: Updates (or initializes) the view count for a country.  
   Your SQL command:
 
-> NSERT INTO country_counts (country_name, count)
+> INSERT INTO country_counts (country_name, count)
 > VALUES ($1, 1)
 > ON CONFLICT (country_name)
 > DO UPDATE
