@@ -2,7 +2,11 @@
 
 > git clone <your-fork>
 
+> cd <your-fork>
+
 > git remote add upstream <team-repo>
+
+> git remote -v
 
 > git fetch upstream
 
