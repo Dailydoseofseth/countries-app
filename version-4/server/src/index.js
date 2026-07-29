@@ -132,15 +132,10 @@ app.post("/update-one-country-count", async (req, res) => {
     `
 INSERT INTO country_counts
 (country_name,count)
-
 VALUES($1,1)
-
 ON CONFLICT(country_name)
-
 DO UPDATE
-
 SET count = country_counts.count + 1
-
 RETURNING count;
 `,
     [country_name],
