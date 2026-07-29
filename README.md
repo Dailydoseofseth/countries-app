@@ -18,6 +18,21 @@ The Countries API App is a full-stack web application that allows users to explo
 
 ## 🖼️ Screenshots
 
+### Home Page
+<img width="1280" height="800" alt="Screenshot 2026-07-29 at 2 11 12 PM" src="https://github.com/user-attachments/assets/747019e6-2ab2-4d8a-b0b8-0bbf46c082e3" />
+
+
+### Saved Countries Page
+<img width="1280" height="800" alt="Screenshot 2026-07-29 at 2 03 37 PM" src="https://github.com/user-attachments/assets/32cf705f-74be-4447-8da8-794796930bd9" />
+
+### Country Details Page
+<img width="1280" height="800" alt="Screenshot 2026-07-29 at 2 13 27 PM" src="https://github.com/user-attachments/assets/2349665e-83e3-4ea6-a2a0-66bb6ab94790" />
+
+
+<details>
+<summary>Click me ㊙🕵</summary>
+
+# Hidden content. Hmm... What to add here?
 _Add a screenshot of your application here after deploying._
 
 Instructions to include a screenshot into your README:
@@ -27,6 +42,8 @@ Instructions to include a screenshot into your README:
 3. Edit the **README.md** by clicking the ✏️ pencil icon.
 4. Paste the screenshot directly into the editor.
 5. Commit your changes.
+
+</details>
 
 ---
 
@@ -208,7 +225,9 @@ Deployment was the biggest challenge. I learned how to troubleshoot environment 
 <br>
 <details>
 <summary>Click me ㊙🕵</summary>
-
+ 
 # Hidden content. Hmm... What to add here?
+
+I am going to really miss this time in life...
 
 </details>
