@@ -1,8 +1,12 @@
 import { useState } from "react";
 
 import CountryCard from "../components/CountryCard";
+import { useLanguage } from "../context/LanguageContext";
 
 function Home({ countries }) {
+  const { t } = useLanguage();
+
+
   // STATE VAR for SEARCH input text
   const [search, setSearch] = useState("");
 
@@ -65,7 +69,7 @@ function Home({ countries }) {
           <input
             className="search-input"
             type="text"
-            placeholder="Search for a country..."
+            placeholder={t("searchPlaceholder")}
             value={search}
             onChange={handleSearch}
           />
@@ -78,13 +82,13 @@ function Home({ countries }) {
             value={region}
             onChange={handleRegion}
           >
-            <option value="">Filter by Region</option>
-            <option value="Africa">Africa</option>
-            <option value="Americas">Americas</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="Oceania">Oceania</option>
-            <option value="Antarctica">Antarctica</option>
+            <option value="">{t("filterByRegion")}</option>
+            <option value="Africa">{t("regionAfrica")}</option>
+            <option value="Americas">{t("regionAmericas")}</option>
+            <option value="Asia">{t("regionAsia")}</option>
+            <option value="Europe">{t("regionEurope")}</option>
+            <option value="Oceania">{t("regionOceania")}</option>
+            <option value="Antarctica">{t("regionAntarctica")}</option>
           </select>
         </div>
       </div>

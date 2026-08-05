@@ -2,7 +2,11 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import { useLanguage } from "../context/LanguageContext";
+
 function CountryDetail({ countries, savedCountries, getSavedCountries }) {
+  const { t } = useLanguage();
+
   // get country name from API URL parameter
   const countryName = useParams().countryName;
 
@@ -58,7 +62,7 @@ function CountryDetail({ countries, savedCountries, getSavedCountries }) {
 
   // Prevents crash while API data is still loading
   if (!country) {
-    return <h2>Loading...</h2>;
+    return <h2>{t("loading")}</h2>;
   }
 
   // SENDS selected country TO BE/database SAVED_COUNTRIES table
@@ -115,7 +119,7 @@ function CountryDetail({ countries, savedCountries, getSavedCountries }) {
     <div className="detail-page">
       {/* Back button */}
       <Link to="/" className="back-btn">
-        ← Back
+        {t("back")}
       </Link>
 
       <div className="detail-container">
@@ -133,30 +137,30 @@ function CountryDetail({ countries, savedCountries, getSavedCountries }) {
 
           {/* Population */}
           <p>
-            <strong>Population:</strong> {country.population}
+            <strong>{t("population")}</strong> {country.population}
           </p>
 
           {/* Region */}
           <p>
-            <strong>Region:</strong> {country.region}
+            <strong>{t("region")}</strong> {country.region}
           </p>
 
           {/* Capital */}
           <p>
-            <strong>Capital:</strong>{" "}
-            {country.capital ? country.capital[0] : "N/A"}
+            <strong>{t("capital")}</strong>{" "}
+            {country.capital ? country.capital[0] : t("na")}
           </p>
 
           {/* COUNTRY VIEW COUNT */}
           <p>
-            <strong>Views:</strong> {countryCount}
+            <strong>{t("views")}</strong> {countryCount}
           </p>
 
           {/* CONDITIONAL heart button */}
           {isSaved ? (
-            <button onClick={unsaveCountry}>❤️ Unsave</button>
+            <button onClick={unsaveCountry}>{t("unsave")}</button>
           ) : (
-            <button onClick={saveCountry}>🩶 Save</button>
+            <button onClick={saveCountry}>{t("save")}</button>
           )}
         </div>
       </div>
