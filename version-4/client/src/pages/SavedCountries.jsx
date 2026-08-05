@@ -1,8 +1,10 @@
 // "DISPLAY PAGE"
 import { useState, useEffect } from "react";
 import CountryCard from "../components/CountryCard";
+import { useLanguage } from "../context/LanguageContext";
 
 function SavedCountries({ countries, savedCountries }) {
+  const { t } = useLanguage();
   // Create the FORM via Form state.
   // Starts as an OBJECT with EMPTY STRINGS for each form field, but will be FILLED with USER INPUT
   const [formData, setFormData] = useState({
@@ -126,19 +128,19 @@ function SavedCountries({ countries, savedCountries }) {
 
   return (
     <div className="form-page">
-      <h2>Saved Countries</h2>
+      <h2>{t("savedCountries")}</h2>
 
       {/* ONLY renders welcome message IF newest USER exists */}
-      {newUserName && <h3>Welcome, {newUserName}!</h3>}
+      {newUserName && <h3>{t("welcome", { name: newUserName })}</h3>}
 
       {/* CALLS handleSubmit when form is submitted */}
       <form className="my-profile-form" onSubmit={handleSubmit}>
-        <h2>My Profile</h2>
+        <h2>{t("myProfile")}</h2>
 
         <input
           type="text"
           name="fullName"
-          placeholder="Name"
+          placeholder={t("namePlaceholder")}
           value={formData.fullName}
           onChange={handleChange} //UPDATES formData STATE with USER INPUT as THEY TYPE
         />
@@ -146,7 +148,7 @@ function SavedCountries({ countries, savedCountries }) {
         <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder={t("emailPlaceholder")}
           value={formData.email}
           onChange={handleChange}
         />
@@ -154,19 +156,19 @@ function SavedCountries({ countries, savedCountries }) {
         <input
           type="text"
           name="country"
-          placeholder="Country"
+          placeholder={t("countryPlaceholder")}
           value={formData.country}
           onChange={handleChange}
         />
 
         <textarea
           name="bio"
-          placeholder="Bio"
+          placeholder={t("bioPlaceholder")}
           value={formData.bio}
           onChange={handleChange}
         ></textarea>
 
-        <button type="submit">Save Profile</button>
+        <button type="submit">{t("saveProfile")}</button>
       </form>
 
       {/* SAVED COUNTRIES DISPLAY */}
@@ -177,7 +179,7 @@ function SavedCountries({ countries, savedCountries }) {
       </div>
 
       {/* ALL USERS SECTION */}
-      <h2>All Users</h2>
+      <h2>{t("allUsers")}</h2>
 
       <div className="users-grid">
         {allUsers.map((user) => {
@@ -186,15 +188,15 @@ function SavedCountries({ countries, savedCountries }) {
               <h3>{user.name}</h3>
 
               <p>
-                <strong>Country:</strong> {user.country_name}
+                <strong>{t("countryLabel")}</strong> {user.country_name}
               </p>
 
               <p>
-                <strong>Email:</strong> {user.email}
+                <strong>{t("emailLabel")}</strong> {user.email}
               </p>
 
               <p>
-                <strong>Bio:</strong> {user.bio}
+                <strong>{t("bioLabel")}</strong> {user.bio}
               </p>
             </div>
           );

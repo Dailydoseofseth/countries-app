@@ -59,6 +59,7 @@ _Users can:_
 - 📄👀 View detailed information about each country.
 - ❤️❤️ Save favorite countries to a PostgreSQL database.
 - 🔄🔙 Retrieve previously saved countries from the backend.
+- 🌐🈂️ Switch the UI language between English, Vietnamese, and Traditional Chinese (country data itself stays in English).
 
 ---
 

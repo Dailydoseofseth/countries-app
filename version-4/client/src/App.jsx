@@ -16,7 +16,12 @@ import SavedCountries from "./pages/SavedCountries";
 
 import { Routes, Route, Link } from "react-router-dom";
 
+import { useLanguage } from "./context/LanguageContext";
+import { SUPPORTED_LANGUAGES } from "./i18n/translations";
+
 function App() {
+  const { language, setLanguage, t } = useLanguage();
+
   // STATE VAR to store all countries data
   // Starts as an EMPTY ARRAY, but will be FILLED with API DATA
   const [countries, setCountries] = useState([]);
@@ -81,12 +86,27 @@ function App() {
       <header className="header">
         <nav className="nav">
           <Link to="/" className="logo">
-            Where in the world?
+            {t("navLogo")}
           </Link>
 
-          <Link to="/SavedCountries" className="saved-link">
-            Saved Countries
-          </Link>
+          <div className="nav-right">
+            <Link to="/SavedCountries" className="saved-link">
+              {t("savedCountries")}
+            </Link>
+
+            {/* Language toggle: switches UI strings only, never the country data itself */}
+            <select
+              className="language-select"
+              value={language}
+              onChange={(event) => setLanguage(event.target.value)}
+            >
+              {SUPPORTED_LANGUAGES.map(({ code, label }) => (
+                <option key={code} value={code}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </div>
         </nav>
       </header>
 

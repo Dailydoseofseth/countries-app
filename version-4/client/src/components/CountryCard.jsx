@@ -3,7 +3,11 @@
 
 import { Link } from "react-router-dom";
 
+import { useLanguage } from "../context/LanguageContext";
+
 function CountryCard({ country }) {
+  const { t } = useLanguage();
+
   // Destructure country OBJECT for cleaner access
   const { name, population, region, capital, flags } = country;
 
@@ -23,17 +27,17 @@ function CountryCard({ country }) {
 
           {/* Pop. data */}
           <p>
-            <strong>Population:</strong> {population}
+            <strong>{t("population")}</strong> {population}
           </p>
 
           {/* Region (continent grouping) */}
           <p>
-            <strong>Region:</strong> {region}
+            <strong>{t("region")}</strong> {region}
           </p>
 
           {/* Capital city WITH TERNARY JIC...(some countries may not have one?) */}
           <p>
-            <strong>Capital:</strong> {capital ? capital[0] : "N/A"}
+            <strong>{t("capital")}</strong> {capital ? capital[0] : t("na")}
           </p>
         </div>
       </div>
