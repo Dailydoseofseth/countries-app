@@ -10,7 +10,9 @@ The Countries API App is a full-stack web application that allows users to explo
 
 ## 🚀 Live Site
 
-**Live App:** https://countries-app-unity.netlify.app/
+**Live App:** https://countries-language-edition.netlify.app/
+
+https://countries-app-unity.netlify.app/
 
 ---
 
