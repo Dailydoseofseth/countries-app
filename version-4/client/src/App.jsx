@@ -17,10 +17,18 @@ import SavedCountries from "./pages/SavedCountries";
 import { Routes, Route, Link } from "react-router-dom";
 
 import { useLanguage } from "./context/LanguageContext";
+import { useTheme } from "./context/ThemeContext";
 import { SUPPORTED_LANGUAGES } from "./i18n/translations";
+
+const THEME_ICONS = {
+  light: "☀️",
+  dark: "🌙",
+  inverted: "🌗",
+};
 
 function App() {
   const { language, setLanguage, t } = useLanguage();
+  const { theme, setTheme } = useTheme();
 
   // STATE VAR to store all countries data
   // Starts as an EMPTY ARRAY, but will be FILLED with API DATA
@@ -106,6 +114,27 @@ function App() {
                 </option>
               ))}
             </select>
+
+            {/* Theme toggle: light / dark / inverted, persisted to localStorage */}
+            <div
+              className="theme-toggle"
+              role="group"
+              aria-label={t("themeToggleLabel")}
+            >
+              {["light", "dark", "inverted"].map((mode) => (
+                <button
+                  key={mode}
+                  type="button"
+                  className={`theme-btn${theme === mode ? " active" : ""}`}
+                  onClick={() => setTheme(mode)}
+                  title={t(`theme${mode[0].toUpperCase()}${mode.slice(1)}`)}
+                  aria-label={t(`theme${mode[0].toUpperCase()}${mode.slice(1)}`)}
+                  aria-pressed={theme === mode}
+                >
+                  {THEME_ICONS[mode]}
+                </button>
+              ))}
+            </div>
           </div>
         </nav>
       </header>

@@ -2,4 +2,19 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"],
+:root[data-theme="inverted"] {
+  color-scheme: dark;
+}
+
+/* form controls don't inherit body color/font by default in most browsers */
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  color: inherit;
 }
