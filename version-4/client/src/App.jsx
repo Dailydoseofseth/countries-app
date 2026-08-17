@@ -23,7 +23,7 @@ import { SUPPORTED_LANGUAGES } from "./i18n/translations";
 const THEME_ICONS = {
   light: "☀️",
   dark: "🌙",
-  inverted: "🌗",
+  inverted: "🎨",
 };
 
 function App() {

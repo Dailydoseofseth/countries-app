@@ -45,15 +45,19 @@ body {
 
 /* =========================
    INVERTED MODE
-   A literal color inversion of the whole page (classic accessibility
-   "invert colors" trick), with images/flags counter-inverted so they
-   still render true-to-life instead of as photo negatives.
+   A vivid "photo-negative" palette — not a literal grayscale flip, but a
+   genuine complementary-color inversion: violet page, magenta-plum
+   surfaces, and a bright spring-green text/accent that pops against both.
+   Flags render in their true colors since this is a palette swap, not a
+   filter.
 ========================= */
 :root[data-theme="inverted"] {
-  filter: invert(1) hue-rotate(180deg);
-}
-:root[data-theme="inverted"] img {
-  filter: invert(1) hue-rotate(180deg);
+  --light-grey: hsl(276, 85%, 9%);
+  --white: hsl(324, 80%, 20%);
+  --dark-blue-3: hsl(155, 90%, 62%);
+  --dark-grey: hsl(200, 90%, 18%);
+  --purple-1: hsl(45, 95%, 55%);
+  --purple-2: hsl(45, 95%, 45%);
 }
 
 *,
@@ -63,10 +67,6 @@ body {
     background-color 0.25s ease,
     color 0.25s ease,
     border-color 0.25s ease;
-}
-:root[data-theme="inverted"],
-:root[data-theme="inverted"] img {
-  transition: filter 0.25s ease;
 }
 
 /* =========================
