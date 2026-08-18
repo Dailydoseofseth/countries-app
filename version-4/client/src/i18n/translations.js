@@ -32,6 +32,10 @@ export const translations = {
     views: "Views:",
     unsave: "❤️ Unsave",
     save: "🩶 Save",
+    themeToggleLabel: "Color theme",
+    themeLight: "Light mode",
+    themeDark: "Dark mode",
+    themeInverted: "Inverted mode",
   },
   vi: {
     navLogo: "Nơi nào trên thế giới?",
@@ -64,6 +68,10 @@ export const translations = {
     views: "Lượt xem:",
     unsave: "❤️ Bỏ lưu",
     save: "🩶 Lưu",
+    themeToggleLabel: "Chủ đề màu",
+    themeLight: "Chế độ sáng",
+    themeDark: "Chế độ tối",
+    themeInverted: "Chế độ đảo màu",
   },
   "zh-TW": {
     navLogo: "世界的哪個角落?",
@@ -96,6 +104,10 @@ export const translations = {
     views: "瀏覽次數:",
     unsave: "❤️ 取消收藏",
     save: "🩶 收藏",
+    themeToggleLabel: "配色主題",
+    themeLight: "淺色模式",
+    themeDark: "深色模式",
+    themeInverted: "反轉色彩模式",
   },
 };
 

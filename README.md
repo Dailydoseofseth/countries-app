@@ -12,8 +12,6 @@ The Countries API App is a full-stack web application that allows users to explo
 
 **Live App:** https://countries-language-edition.netlify.app/
 
-https://countries-app-unity.netlify.app/
-
 ---
 
 ---
@@ -62,6 +60,7 @@ _Users can:_
 - ❤️❤️ Save favorite countries to a PostgreSQL database.
 - 🔄🔙 Retrieve previously saved countries from the backend.
 - 🌐🈂️ Switch the UI language between English, Vietnamese, and Traditional Chinese (country data itself stays in English).
+- 🎨🌗 Switch between light, dark, and a high-contrast inverted color theme, persisted across visits.
 
 ---
 
