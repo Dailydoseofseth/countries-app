@@ -95,7 +95,7 @@ describe("ThemeContext", () => {
     expect(screen.getByTestId("current-theme")).toHaveTextContent("dark");
   });
 
-  it("cycles through light -> dark -> inverted -> light", async () => {
+  it("cycles through light -> dark -> inverted -> google -> light", async () => {
     const user = userEvent.setup();
 
     render(
@@ -111,6 +111,9 @@ describe("ThemeContext", () => {
 
     await user.click(screen.getByText("Cycle"));
     expect(screen.getByTestId("current-theme")).toHaveTextContent("inverted");
+
+    await user.click(screen.getByText("Cycle"));
+    expect(screen.getByTestId("current-theme")).toHaveTextContent("google");
 
     await user.click(screen.getByText("Cycle"));
     expect(screen.getByTestId("current-theme")).toHaveTextContent("light");

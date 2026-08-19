@@ -23,8 +23,11 @@ import { SUPPORTED_LANGUAGES } from "./i18n/translations";
 const THEME_ICONS = {
   light: "☀️",
   dark: "🌙",
-  inverted: "🎨",
+  inverted: "🌗",
+  google: "🎪",
 };
+
+const THEME_MODES = ["light", "dark", "inverted", "google"];
 
 function App() {
   const { language, setLanguage, t } = useLanguage();
@@ -121,7 +124,7 @@ function App() {
               role="group"
               aria-label={t("themeToggleLabel")}
             >
-              {["light", "dark", "inverted"].map((mode) => (
+              {THEME_MODES.map((mode) => (
                 <button
                   key={mode}
                   type="button"

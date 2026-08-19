@@ -44,20 +44,193 @@ body {
 }
 
 /* =========================
-   INVERTED MODE
-   A vivid "photo-negative" palette — not a literal grayscale flip, but a
-   genuine complementary-color inversion: violet page, magenta-plum
-   surfaces, and a bright spring-green text/accent that pops against both.
-   Flags render in their true colors since this is a palette swap, not a
-   filter.
+   INVERTED MODE (color-blind-safe / accessibility)
+   Built entirely from shades of blue and orange — the pairing
+   color-vision research consistently recommends because it stays
+   distinguishable across protanopia, deuteranopia, and tritanopia
+   (unlike red/green). Deep navy backgrounds/surfaces, a warm
+   orange-tinted off-white for body text (15.5:1 / 13.3:1 — well past
+   WCAG AAA's 7:1), vivid orange for titles and primary actions, and a
+   brighter blue for hover/secondary state and borders. Surfaces get a
+   real border since a barely-different background shade isn't a
+   reliable elevation cue at high contrast.
 ========================= */
 :root[data-theme="inverted"] {
-  --light-grey: hsl(276, 85%, 9%);
-  --white: hsl(324, 80%, 20%);
-  --dark-blue-3: hsl(155, 90%, 62%);
-  --dark-grey: hsl(200, 90%, 18%);
-  --purple-1: hsl(45, 95%, 55%);
-  --purple-2: hsl(45, 95%, 45%);
+  --light-grey: hsl(212, 65%, 9%);
+  --white: hsl(212, 55%, 15%);
+  --dark-blue-3: hsl(35, 45%, 92%);
+  --dark-grey: hsl(205, 90%, 23%);
+  --purple-1: hsl(32, 95%, 55%);
+  --purple-2: hsl(32, 95%, 45%);
+}
+:root[data-theme="inverted"] header,
+:root[data-theme="inverted"] .card,
+:root[data-theme="inverted"] .my-profile-form,
+:root[data-theme="inverted"] .back-btn,
+:root[data-theme="inverted"] .search-input,
+:root[data-theme="inverted"] .region-select,
+:root[data-theme="inverted"] .language-select,
+:root[data-theme="inverted"] .detail-flag,
+:root[data-theme="inverted"] .my-profile-form input,
+:root[data-theme="inverted"] .my-profile-form textarea {
+  border: 2px solid hsl(205, 70%, 55%);
+}
+:root[data-theme="inverted"] .logo,
+:root[data-theme="inverted"] .saved-link,
+:root[data-theme="inverted"] .card-body h3,
+:root[data-theme="inverted"] .detail-content h1,
+:root[data-theme="inverted"] .my-profile-form h2,
+:root[data-theme="inverted"] .form-page h2 {
+  color: hsl(32, 95%, 60%);
+}
+/* placeholders default to a faint browser grey that all but disappears on
+   these dark surfaces — give them a legible light-blue tint (7.8:1 / 6.6:1) */
+:root[data-theme="inverted"] .search-input::placeholder,
+:root[data-theme="inverted"] .my-profile-form input::placeholder,
+:root[data-theme="inverted"] .my-profile-form textarea::placeholder {
+  color: hsl(210, 45%, 68%);
+  opacity: 1;
+}
+
+/* =========================
+   GOOGLE MODE (just for fun 🎉 — a Sesame Street-style rainbow romp)
+   Every surface — header, cards, inputs, buttons, links — gets a bold
+   flat primary color instead of a single subtle accent. Four colors do
+   all the work:
+========================= */
+:root[data-theme="google"] {
+  --google-red: hsl(4, 90%, 58%);
+  --google-yellow: hsl(48, 100%, 55%);
+  --google-green: hsl(140, 60%, 42%);
+  --google-blue: hsl(210, 90%, 55%);
+  --google-ink: hsl(220, 20%, 15%);
+
+  --light-grey: hsl(48, 100%, 95%);
+  --white: hsl(0, 0%, 100%);
+  --dark-blue-3: var(--google-ink);
+  --dark-grey: var(--google-blue);
+  --purple-1: var(--google-red);
+  --purple-2: var(--google-green);
+}
+
+:root[data-theme="google"] .logo {
+  background: linear-gradient(
+    90deg,
+    var(--google-blue),
+    var(--google-red),
+    var(--google-yellow),
+    var(--google-blue),
+    var(--google-green),
+    var(--google-red)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* header: bold blue, white nav text (the logo overrides this with its own gradient) */
+:root[data-theme="google"] header {
+  background: var(--google-blue);
+}
+:root[data-theme="google"] .nav-right,
+:root[data-theme="google"] .saved-link {
+  color: hsl(0, 0%, 100%);
+}
+
+/* search + filter controls */
+:root[data-theme="google"] .search-input {
+  background: var(--google-yellow);
+  border: 4px solid var(--google-red);
+  color: var(--google-ink);
+}
+:root[data-theme="google"] .search-input::placeholder {
+  color: hsl(217, 89%, 35%);
+  opacity: 1;
+}
+:root[data-theme="google"] .region-select {
+  background: var(--google-green);
+  border: 4px solid var(--google-yellow);
+  color: hsl(0, 0%, 100%);
+}
+:root[data-theme="google"] .language-select {
+  background: hsl(0, 0%, 100%);
+  border: 4px solid var(--google-blue);
+  color: var(--google-ink);
+}
+:root[data-theme="google"] .theme-toggle {
+  background: hsl(0, 0%, 100%);
+  border: 3px solid var(--google-red);
+}
+:root[data-theme="google"] .theme-btn.active {
+  background: var(--google-green);
+}
+
+/* country cards: each a different flat color, like a set of flash cards */
+:root[data-theme="google"] .card {
+  border: 5px solid var(--google-ink);
+}
+:root[data-theme="google"] .grid > .card-link:nth-child(4n + 1) .card {
+  background: var(--google-red);
+}
+:root[data-theme="google"] .grid > .card-link:nth-child(4n + 1) .card-body * {
+  color: hsl(0, 0%, 100%);
+}
+:root[data-theme="google"] .grid > .card-link:nth-child(4n + 2) .card {
+  background: var(--google-yellow);
+}
+:root[data-theme="google"] .grid > .card-link:nth-child(4n + 2) .card-body * {
+  color: var(--google-ink);
+}
+:root[data-theme="google"] .grid > .card-link:nth-child(4n + 3) .card {
+  background: var(--google-green);
+}
+:root[data-theme="google"] .grid > .card-link:nth-child(4n + 3) .card-body * {
+  color: hsl(0, 0%, 100%);
+}
+:root[data-theme="google"] .grid > .card-link:nth-child(4n) .card {
+  background: var(--google-blue);
+}
+:root[data-theme="google"] .grid > .card-link:nth-child(4n) .card-body * {
+  color: hsl(0, 0%, 100%);
+}
+
+/* profile form */
+:root[data-theme="google"] .my-profile-form {
+  background: var(--google-green);
+  border: 5px solid var(--google-yellow);
+}
+:root[data-theme="google"] .my-profile-form h2 {
+  color: hsl(0, 0%, 100%);
+}
+:root[data-theme="google"] .my-profile-form input,
+:root[data-theme="google"] .my-profile-form textarea {
+  background: hsl(0, 0%, 100%);
+  border: 3px solid var(--google-blue);
+  color: var(--google-ink);
+}
+:root[data-theme="google"] .my-profile-form input::placeholder,
+:root[data-theme="google"] .my-profile-form textarea::placeholder {
+  color: hsl(340, 80%, 35%);
+  opacity: 1;
+}
+
+/* country detail page */
+:root[data-theme="google"] .back-btn {
+  background: var(--google-red);
+  color: hsl(0, 0%, 100%);
+}
+:root[data-theme="google"] .detail-flag {
+  border: 6px solid var(--google-yellow);
+}
+:root[data-theme="google"] .detail-content button {
+  background: var(--google-blue);
+  color: hsl(0, 0%, 100%);
+  border: 3px solid var(--google-red);
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 *,
@@ -94,7 +267,7 @@ nav {
 
 /* language toggle */
 .language-select {
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 1rem 0.5rem 0.75rem;
   border: none;
   border-radius: 9px;
   font-family: inherit;
@@ -119,13 +292,13 @@ nav {
   width: 2.1rem;
   height: 2.1rem;
   padding: 0;
-  border: none;
+  border: 1px solid rgba(128, 128, 128, 0.3);
   border-radius: 50%;
-  background: transparent;
+  background: rgba(128, 128, 128, 0.08);
   font-size: 1rem;
   line-height: 1;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.65;
   transition:
     opacity 0.2s ease,
     background-color 0.2s ease,

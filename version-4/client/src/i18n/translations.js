@@ -35,7 +35,8 @@ export const translations = {
     themeToggleLabel: "Color theme",
     themeLight: "Light mode",
     themeDark: "Dark mode",
-    themeInverted: "Inverted mode",
+    themeInverted: "High contrast mode",
+    themeGoogle: "Google mode",
   },
   vi: {
     navLogo: "Nơi nào trên thế giới?",
@@ -71,7 +72,8 @@ export const translations = {
     themeToggleLabel: "Chủ đề màu",
     themeLight: "Chế độ sáng",
     themeDark: "Chế độ tối",
-    themeInverted: "Chế độ đảo màu",
+    themeInverted: "Chế độ tương phản cao",
+    themeGoogle: "Chế độ Google",
   },
   "zh-TW": {
     navLogo: "世界的哪個角落?",
@@ -107,7 +109,8 @@ export const translations = {
     themeToggleLabel: "配色主題",
     themeLight: "淺色模式",
     themeDark: "深色模式",
-    themeInverted: "反轉色彩模式",
+    themeInverted: "高對比模式",
+    themeGoogle: "Google 模式",
   },
 };
 

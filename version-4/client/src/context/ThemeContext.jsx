@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 const ThemeContext = createContext(null);
 
 const STORAGE_KEY = "theme";
-const THEMES = ["light", "dark", "inverted"];
+const THEMES = ["light", "dark", "inverted", "google"];
 const DEFAULT_THEME = "light";
 
 function getSystemTheme() {
