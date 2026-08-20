@@ -32,6 +32,19 @@ body {
 }
 
 /* =========================
+   LIGHT MODE
+   Gives the back-to-top button its own navy identity color (reusing the
+   app's existing --dark-blue-1/2) instead of the shared purple accent,
+   so it doesn't read as "dark mode's purple" while in light mode.
+========================= */
+:root[data-theme="light"] .back-to-top {
+  background: var(--dark-blue-1);
+}
+:root[data-theme="light"] .back-to-top:hover {
+  background: var(--dark-blue-2);
+}
+
+/* =========================
    DARK MODE
 ========================= */
 :root[data-theme="dark"] {
@@ -65,12 +78,14 @@ body {
 }
 :root[data-theme="inverted"] header,
 :root[data-theme="inverted"] .card,
+:root[data-theme="inverted"] .user-card,
 :root[data-theme="inverted"] .my-profile-form,
 :root[data-theme="inverted"] .back-btn,
 :root[data-theme="inverted"] .search-input,
 :root[data-theme="inverted"] .region-select,
 :root[data-theme="inverted"] .language-select,
 :root[data-theme="inverted"] .detail-flag,
+:root[data-theme="inverted"] .back-to-top,
 :root[data-theme="inverted"] .my-profile-form input,
 :root[data-theme="inverted"] .my-profile-form textarea {
   border: 2px solid hsl(205, 70%, 55%);
@@ -78,6 +93,7 @@ body {
 :root[data-theme="inverted"] .logo,
 :root[data-theme="inverted"] .saved-link,
 :root[data-theme="inverted"] .card-body h3,
+:root[data-theme="inverted"] .user-card h3,
 :root[data-theme="inverted"] .detail-content h1,
 :root[data-theme="inverted"] .my-profile-form h2,
 :root[data-theme="inverted"] .form-page h2 {
@@ -90,6 +106,39 @@ body {
 :root[data-theme="inverted"] .my-profile-form textarea::placeholder {
   color: hsl(210, 45%, 68%);
   opacity: 1;
+}
+/* the default black box-shadows are the same shape/style as modes 1 & 2,
+   just recolored — black-on-near-black had almost no visible contrast here */
+:root[data-theme="inverted"] .card,
+:root[data-theme="inverted"] .user-card,
+:root[data-theme="inverted"] .my-profile-form,
+:root[data-theme="inverted"] .back-btn,
+:root[data-theme="inverted"] .detail-flag,
+:root[data-theme="inverted"] .back-to-top,
+:root[data-theme="inverted"] .search-input,
+:root[data-theme="inverted"] .region-select {
+  box-shadow:
+    0 -1px 4px 2px hsla(205, 70%, 55%, 0.35),
+    0 0 4px 4px hsla(205, 70%, 55%, 0.25);
+}
+:root[data-theme="inverted"] .card:hover,
+:root[data-theme="inverted"] .user-card:hover {
+  box-shadow:
+    0 0 7px 7px hsla(205, 70%, 55%, 0.45),
+    0 2px 12px hsla(205, 70%, 55%, 0.35);
+}
+:root[data-theme="inverted"] .back-btn:hover,
+:root[data-theme="inverted"] .back-to-top:hover {
+  box-shadow:
+    0 -1px 4px 2px hsla(205, 70%, 55%, 0.45),
+    0 2px 12px hsla(205, 70%, 55%, 0.35);
+}
+:root[data-theme="inverted"] .my-profile-form input,
+:root[data-theme="inverted"] .my-profile-form textarea,
+:root[data-theme="inverted"] .my-profile-form button {
+  box-shadow:
+    0 -1px 4px 2px hsla(205, 70%, 55%, 0.35),
+    0 0 4px 3px hsla(205, 70%, 55%, 0.25);
 }
 
 /* =========================
@@ -153,7 +202,7 @@ body {
   color: hsl(0, 0%, 100%);
 }
 :root[data-theme="google"] .language-select {
-  background: hsl(0, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
   border: 4px solid var(--google-blue);
   color: var(--google-ink);
 }
@@ -168,6 +217,14 @@ body {
 /* country cards: each a different flat color, like a set of flash cards */
 :root[data-theme="google"] .card {
   border: 5px solid var(--google-ink);
+  box-shadow: 8px 8px 0 var(--google-blue);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+:root[data-theme="google"] .card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 var(--google-red);
 }
 :root[data-theme="google"] .grid > .card-link:nth-child(4n + 1) .card {
   background: var(--google-red);
@@ -194,10 +251,33 @@ body {
   color: hsl(0, 0%, 100%);
 }
 
+/* user cards: same flash-card treatment as country cards */
+:root[data-theme="google"] .user-card {
+  border: 5px solid var(--google-ink);
+  box-shadow: 8px 8px 0 var(--google-blue);
+}
+:root[data-theme="google"] .users-grid > .user-card:nth-child(4n + 1) {
+  background: var(--google-blue);
+  color: hsl(0, 0%, 100%);
+}
+:root[data-theme="google"] .users-grid > .user-card:nth-child(4n + 2) {
+  background: var(--google-green);
+  color: hsl(0, 0%, 100%);
+}
+:root[data-theme="google"] .users-grid > .user-card:nth-child(4n + 3) {
+  background: var(--google-yellow);
+  color: var(--google-ink);
+}
+:root[data-theme="google"] .users-grid > .user-card:nth-child(4n) {
+  background: var(--google-red);
+  color: hsl(0, 0%, 100%);
+}
+
 /* profile form */
 :root[data-theme="google"] .my-profile-form {
   background: var(--google-green);
   border: 5px solid var(--google-yellow);
+  box-shadow: 8px 8px 0 var(--google-blue);
 }
 :root[data-theme="google"] .my-profile-form h2 {
   color: hsl(0, 0%, 100%);
@@ -218,9 +298,19 @@ body {
 :root[data-theme="google"] .back-btn {
   background: var(--google-red);
   color: hsl(0, 0%, 100%);
+  box-shadow: 6px 6px 0 var(--google-blue);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+:root[data-theme="google"] .back-btn:hover {
+  background: var(--google-red);
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--google-blue);
 }
 :root[data-theme="google"] .detail-flag {
   border: 6px solid var(--google-yellow);
+  box-shadow: 8px 8px 0 var(--google-blue);
 }
 :root[data-theme="google"] .detail-content button {
   background: var(--google-blue);
@@ -231,6 +321,19 @@ body {
   font-weight: 700;
   font-family: inherit;
   cursor: pointer;
+}
+
+/* back-to-top button */
+:root[data-theme="google"] .back-to-top {
+  background: var(--google-red);
+  color: hsl(0, 0%, 100%);
+  border: 4px solid var(--google-ink);
+  box-shadow: 6px 6px 0 var(--google-blue);
+}
+:root[data-theme="google"] .back-to-top:hover {
+  background: var(--google-red);
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--google-blue);
 }
 
 *,
@@ -267,12 +370,27 @@ nav {
 
 /* language toggle */
 .language-select {
-  padding: 0.5rem 1rem 0.5rem 0.75rem;
+  /* Custom-drawn arrow (currentColor, so it matches every theme's text
+     color automatically) instead of the native one — browsers largely
+     ignore padding-right when positioning a <select>'s built-in arrow, so
+     padding alone never actually moved it away from the edge. */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0.5rem 2.25rem 0.5rem 0.75rem;
   border: none;
   border-radius: 9px;
   font-family: inherit;
   font-size: 0.875rem;
-  background: var(--light-grey);
+  background-color: var(--light-grey);
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.35rem) center,
+    calc(100% - 1rem) center;
+  background-size: 0.35rem 0.35rem;
+  background-repeat: no-repeat;
   cursor: pointer;
 }
 
@@ -463,6 +581,55 @@ a {
 }
 
 /* =========================
+   ALL USERS GRID
+========================= */
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+@media (max-width: 1200px) {
+  .users-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .users-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .users-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.user-card {
+  background: var(--white);
+  border-radius: 9px;
+  padding: 1.5rem;
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.2s ease;
+}
+.user-card:hover {
+  box-shadow:
+    0 0 7px 7px rgba(0, 0, 0, 0.25),
+    0 2px 12px rgba(0, 0, 0, 0.17);
+}
+.user-card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+.user-card p {
+  margin: 0 0 0.4rem 0;
+  font-size: 0.875rem;
+  overflow-wrap: break-word;
+}
+
+/* =========================
    COUNTRY DETAIL PAGE
 ========================= */
 .detail-page {
@@ -577,5 +744,53 @@ a {
   }
   .search-input {
     max-width: 100%;
+  }
+}
+
+/* =========================
+   BACK TO TOP
+========================= */
+.back-to-top {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 20;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 50%;
+  background: var(--purple-1);
+  color: var(--white);
+  font-size: 2.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--purple-2);
+}
+@media (max-width: 600px) {
+  .back-to-top {
+    right: 1.25rem;
+    bottom: 1.25rem;
   }
 }

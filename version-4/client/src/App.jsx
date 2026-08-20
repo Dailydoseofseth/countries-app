@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 // BACKUP local data IF API FAILS (imported/Kept on purppose)
 import localData from "../localData";
 
+import BackToTop from "./components/BackToTop";
 import CountryDetail from "./pages/CountryDetail";
 import Home from "./pages/Home";
 import SavedCountries from "./pages/SavedCountries";
@@ -94,7 +95,7 @@ function App() {
   return (
     <div>
       {/* NAV LINKS for page routing */}
-      <header className="header">
+      <header id="top" className="header">
         <nav className="nav">
           <Link to="/" className="logo">
             {t("navLogo")}
@@ -169,6 +170,8 @@ function App() {
           }
         />
       </Routes>
+
+      <BackToTop />
     </div>
   );
 }

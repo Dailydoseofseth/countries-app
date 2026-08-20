@@ -37,6 +37,7 @@ export const translations = {
     themeDark: "Dark mode",
     themeInverted: "High contrast mode",
     themeGoogle: "Google mode",
+    backToTop: "Back to top",
   },
   vi: {
     navLogo: "Nơi nào trên thế giới?",
@@ -74,6 +75,7 @@ export const translations = {
     themeDark: "Chế độ tối",
     themeInverted: "Chế độ tương phản cao",
     themeGoogle: "Chế độ Google",
+    backToTop: "Lên đầu trang",
   },
   "zh-TW": {
     navLogo: "世界的哪個角落?",
@@ -111,6 +113,7 @@ export const translations = {
     themeDark: "深色模式",
     themeInverted: "高對比模式",
     themeGoogle: "Google 模式",
+    backToTop: "回到頂部",
   },
 };
 
