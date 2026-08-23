@@ -38,6 +38,17 @@ export const translations = {
     themeInverted: "High contrast mode",
     themeGoogle: "Google mode",
     backToTop: "Back to top",
+    donateNav: "💰☕🪙 Donate",
+    donationsHeading: "Support This Project",
+    donationsIntro:
+      "If this app made you smile (or you just want to fuel more late-night coding), here's how to send a little love.",
+    cashappTitle: "Buy Me A Coffee",
+    cashappCaption: "Scan with Cash App",
+    venmoTitle:
+      "Buy Me More Claude Tokens ...to keep building radical things FOR YOU!",
+    venmoCaption: "Scan with Venmo",
+    zelleTitle: "Zelle It Like You Mean It",
+    zelleCaption: "Send via Zelle in your banking app to:",
   },
   vi: {
     navLogo: "Nơi nào trên thế giới?",
@@ -76,6 +87,17 @@ export const translations = {
     themeInverted: "Chế độ tương phản cao",
     themeGoogle: "Chế độ Google",
     backToTop: "Lên đầu trang",
+    donateNav: "💰☕🪙 Ủng hộ",
+    donationsHeading: "Ủng Hộ Dự Án Này",
+    donationsIntro:
+      "Nếu ứng dụng này khiến bạn mỉm cười (hoặc bạn chỉ muốn tiếp thêm năng lượng cho những đêm code muộn), đây là cách gửi chút tình cảm.",
+    cashappTitle: "Mời Tôi Một Ly Cà Phê",
+    cashappCaption: "Quét bằng Cash App",
+    venmoTitle:
+      "Mua Thêm Token Claude Cho Tôi ...để tiếp tục xây dựng những điều tuyệt vời CHO BẠN!",
+    venmoCaption: "Quét bằng Venmo",
+    zelleTitle: "Zelle Thật Lòng Nhé",
+    zelleCaption: "Chuyển khoản qua Zelle trong ứng dụng ngân hàng của bạn đến:",
   },
   "zh-TW": {
     navLogo: "世界的哪個角落?",
@@ -114,6 +136,16 @@ export const translations = {
     themeInverted: "高對比模式",
     themeGoogle: "Google 模式",
     backToTop: "回到頂部",
+    donateNav: "💰☕🪙 贊助",
+    donationsHeading: "支持這個專案",
+    donationsIntro:
+      "如果這個應用讓你會心一笑(或你只是想幫我撐過熬夜寫程式的夜晚),這裡有幾種表達心意的方式。",
+    cashappTitle: "請我喝杯咖啡",
+    cashappCaption: "用 Cash App 掃描",
+    venmoTitle: "幫我加值更多 Claude Token ...讓我繼續為你打造更多酷東西!",
+    venmoCaption: "用 Venmo 掃描",
+    zelleTitle: "用 Zelle 表達你的真心",
+    zelleCaption: "在你的銀行 App 中透過 Zelle 轉帳至:",
   },
 };
 

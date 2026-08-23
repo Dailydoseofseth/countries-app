@@ -12,6 +12,7 @@ import localData from "../localData";
 
 import BackToTop from "./components/BackToTop";
 import CountryDetail from "./pages/CountryDetail";
+import Donations from "./pages/Donations";
 import Home from "./pages/Home";
 import SavedCountries from "./pages/SavedCountries";
 
@@ -106,6 +107,10 @@ function App() {
               {t("savedCountries")}
             </Link>
 
+            <Link to="/Donations" className="donate-link">
+              {t("donateNav")}
+            </Link>
+
             {/* Language toggle: switches UI strings only, never the country data itself */}
             <select
               className="language-select"
@@ -169,6 +174,9 @@ function App() {
             />
           }
         />
+
+        {/* Donations page: Cash App / Venmo / Zelle */}
+        <Route path="/Donations" element={<Donations />} />
       </Routes>
 
       <BackToTop />

@@ -92,11 +92,14 @@ body {
 }
 :root[data-theme="inverted"] .logo,
 :root[data-theme="inverted"] .saved-link,
+:root[data-theme="inverted"] .donate-link,
 :root[data-theme="inverted"] .card-body h3,
 :root[data-theme="inverted"] .user-card h3,
 :root[data-theme="inverted"] .detail-content h1,
 :root[data-theme="inverted"] .my-profile-form h2,
-:root[data-theme="inverted"] .form-page h2 {
+:root[data-theme="inverted"] .form-page h2,
+:root[data-theme="inverted"] .donations-heading,
+:root[data-theme="inverted"] .donation-card h2 {
   color: hsl(32, 95%, 60%);
 }
 /* placeholders default to a faint browser grey that all but disappears on
@@ -111,6 +114,7 @@ body {
    just recolored — black-on-near-black had almost no visible contrast here */
 :root[data-theme="inverted"] .card,
 :root[data-theme="inverted"] .user-card,
+:root[data-theme="inverted"] .donation-card,
 :root[data-theme="inverted"] .my-profile-form,
 :root[data-theme="inverted"] .back-btn,
 :root[data-theme="inverted"] .detail-flag,
@@ -334,6 +338,22 @@ body {
   background: var(--google-red);
   transform: translate(-3px, -3px);
   box-shadow: 9px 9px 0 var(--google-blue);
+}
+
+/* donations page: same flash-card treatment, one flat color per card */
+:root[data-theme="google"] .donation-card {
+  border: 5px solid var(--google-ink);
+  box-shadow: 8px 8px 0 var(--google-blue);
+  color: hsl(0, 0%, 100%);
+}
+:root[data-theme="google"] .donation-card--cashapp {
+  background: var(--google-green);
+}
+:root[data-theme="google"] .donation-card--venmo {
+  background: var(--google-blue);
+}
+:root[data-theme="google"] .donation-card--zelle {
+  background: var(--google-red);
 }
 
 *,
@@ -793,4 +813,86 @@ a {
     right: 1.25rem;
     bottom: 1.25rem;
   }
+}
+
+/* =========================
+   DONATIONS PAGE
+========================= */
+.donations-page {
+  padding: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.donations-heading {
+  font-size: 2rem;
+  margin: 2rem 0 0.5rem 0;
+}
+.donations-intro {
+  max-width: 600px;
+  margin: 0 0 3rem 0;
+  opacity: 0.85;
+}
+.donations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+@media (max-width: 900px) {
+  .donations-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.donation-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  border-top: 6px solid transparent;
+  box-shadow:
+    0 -1px 4px 2px rgba(0, 0, 0, 0.17),
+    0 0 4px 4px rgba(0, 0, 0, 0.12);
+}
+/* real brand colors, kept constant regardless of app theme (light/dark/etc)
+   for recognizability — same idea as using real logos */
+.donation-card--cashapp {
+  border-top-color: #00d632;
+}
+.donation-card--venmo {
+  border-top-color: #3d95ce;
+}
+.donation-card--zelle {
+  border-top-color: #6d1ed4;
+}
+
+.donation-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.donation-card h2 {
+  font-size: 1.1rem;
+  min-height: 3.3rem;
+  margin: 0 0 1.5rem 0;
+}
+.donation-qr,
+.qr-code,
+.qr-placeholder {
+  display: block;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1rem auto;
+  border-radius: 8px;
+  object-fit: contain;
+  background: hsl(0, 0%, 96%);
+}
+.donation-caption {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin: 0 0 0.35rem 0;
+}
+.donation-handle {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0;
+  overflow-wrap: break-word;
 }
