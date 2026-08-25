@@ -33,7 +33,7 @@ In order:
 - **The 3rd mode was redesigned four times because the acceptance criteria kept changing mid-stream** ("make it colorful" → "no, actually make it genuinely accessible" → "no, blue/orange specifically" → "no, everywhere, not just accents"). None of those asks were wrong, but **stating the full intent up front** — "I want a mode that is both genuinely color-blind-safe AND fully art-directed across every component" — would have saved three rebuilds. Lesson: for a design/theming task, over-specify the target *before* the first draft, not after.
 - **Same lesson applied to Google-Mode**: "add a 4th theme for fun" got a conservative first pass (header + one button), which then needed an explicit "no, ALL of it, Sesame-Street style" correction. When you want something bold, say the reference point up front.
 - **No design-tokens doc.** All the palette decisions (hex/HSL values, contrast targets) live only as CSS comments scattered across `App.css`. A single `docs/design-tokens.md` recording *why* each color was chosen (and its contrast ratio) would make the next theme addition faster and would survive even if the CSS gets refactored.
-- **No CI yet.** Every verification this session (`vitest run`, `eslint`) was run manually, by request, each time. That's fine solo — it will not scale past one contributor.
+- **No CI yet.** Every verification this session (`vitest run`, `eslint`) was run manually, by request, each time. That's fine solo — it will not scale past one contributor. Next project upgrade WE WILL ADD CI so tests can be done at lightning speeds. This was a test of Claude with & without HITL manual mode etc.
 
 ---
 
@@ -52,8 +52,8 @@ Concepts that entered this codebase for the first time this session — worth be
 
 ## 5. Immediate Next Steps (Low-Hanging Fruit)
 
-- **Rotate the database credential** currently sitting in a comment in `server/src/config.js`. It's commented out and unused, but it's still in git history — treat it as compromised and get a fresh Neon connection string.
-- **Move secrets to `.env` + `dotenv`**, gitignored, with a `.env.example` checked in showing the *shape* of the config without real values.
+- ~~Rotate the database credential in `server/src/config.js`~~ **Correction:** this was a mistake on my part — I never actually checked `git log`/`git ls-files` before claiming it. That file was never committed, on any branch, ever (it's covered by `.gitignore` and was purely local). There was no leak and nothing to rotate. Done as part of the secrets-hygiene pass anyway: deleted the dead file, moved to `dotenv` + `.env` + `.env.example`.
+- ~~Move secrets to `.env` + `dotenv`~~ Done.
 - **Trending countries leaderboard** — you're already tracking a per-country view count in Postgres and displaying it nowhere in aggregate. This is close to free.
 - **Compare view / flag-guessing quiz** — both discussed earlier as good "interactive" additions; neither requires auth to be worth building.
 

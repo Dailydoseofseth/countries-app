@@ -2,9 +2,11 @@
 // Boilerplate Code to Set Up Server
 // ---------------------------------
 
+import "dotenv/config";
 import express from "express";
 import pg from "pg";
-// import config from "./config.js";
+
+import { logger } from "./logger.js";
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -16,7 +18,7 @@ app.use(express.json());
 
 const port = 3000;
 app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+  logger.info("Server started", { port });
 });
 
 // ---------------------------------
@@ -36,7 +38,7 @@ app.get("/get-all-users", async (req, res) => {
 
     res.json(result.rows);
   } catch (error) {
-    console.log(error);
+    logger.error("Failed to get users", { error: error.message });
 
     res.status(500).json({
       error: "Failed to get users",
@@ -142,4 +144,20 @@ RETURNING count;
   );
 
   res.json(result.rows[0]);
+});
+
+// ---------------------------------
+// Error handling
+// ---------------------------------
+// Catches rejected promises from every async route above (Express 5 forwards
+// them here automatically) — previously only /get-all-users had its own
+// try/catch, so every other endpoint failed silently with no logging at all.
+app.use((err, req, res, next) => {
+  logger.error("Unhandled request error", {
+    method: req.method,
+    path: req.path,
+    error: err.message,
+  });
+
+  res.status(500).json({ error: "Something went wrong" });
 });
